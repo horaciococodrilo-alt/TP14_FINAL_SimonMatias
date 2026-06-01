@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Configuracion")]
-    public float tiempoTotal = 60f;     // segundos de la partida
-    public int puntajeMaximo = 8;       // cuantas netbooks hay que juntar
+    public float tiempoTotal = 60f;
+    public int puntajeMaximo = 8;
 
     [Header("Referencias")]
     public UIManager uiManager;
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // Reactivar el tiempo por si quedo congelado de una partida anterior
+        Time.timeScale = 1f;
+
         tiempoRestante = tiempoTotal;
         uiManager.ActualizarScore(puntajeActual, puntajeMaximo);
         uiManager.ActualizarTimer(tiempoRestante);
@@ -22,23 +26,27 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (juegoTerminado) return;
+        // Si el juego termino, solo escuchar la tecla R para reiniciar
+        if (juegoTerminado)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            return;
+        }
 
         // Restar tiempo
         tiempoRestante -= Time.deltaTime;
         uiManager.ActualizarTimer(tiempoRestante);
 
-        // Condicion de derrota: se acabo el tiempo
+        // Derrota: se acabo el tiempo
         if (tiempoRestante <= 0f)
         {
             tiempoRestante = 0f;
             uiManager.ActualizarTimer(tiempoRestante);
-            juegoTerminado = true;
-            Debug.Log("GAME OVER - Se acabo el tiempo");
+            PerderJuego();
         }
     }
 
-    // El Recolector llama a esto cuando agarra una netbook
     public void SumarPunto()
     {
         if (juegoTerminado) return;
@@ -47,11 +55,24 @@ public class GameManager : MonoBehaviour
         uiManager.ActualizarScore(puntajeActual, puntajeMaximo);
         Debug.Log("Punto sumado. Total: " + puntajeActual);
 
-        // Condicion de victoria
+        // Victoria
         if (puntajeActual >= puntajeMaximo)
-        {
-            juegoTerminado = true;
-            Debug.Log("WIN - Juntaste todas las netbooks!");
-        }
+            GanarJuego();
+    }
+
+    void GanarJuego()
+    {
+        juegoTerminado = true;
+        uiManager.MostrarPantallaWin();
+        Time.timeScale = 0f;   // congelar el juego
+        Debug.Log("WIN - Juntaste todas las netbooks!");
+    }
+
+    void PerderJuego()
+    {
+        juegoTerminado = true;
+        uiManager.MostrarPantallaGameOver();
+        Time.timeScale = 0f;   // congelar el juego
+        Debug.Log("GAME OVER - Se acabo el tiempo");
     }
 }

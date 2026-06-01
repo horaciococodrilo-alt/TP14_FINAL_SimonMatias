@@ -7,6 +7,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI textoScore;
     public TextMeshProUGUI textoTimer;
 
+    [Header("Pantallas de fin de juego")]
+    public GameObject panelWin;
+    public GameObject panelGameOver;
+
     public void ActualizarScore(int puntos, int total)
     {
         textoScore.text = "Score: " + puntos + " / " + total;
@@ -14,8 +18,17 @@ public class UIManager : MonoBehaviour
 
     public void ActualizarTimer(float tiempo)
     {
-        // Mostrar segundos enteros, sin decimales
         int segundos = Mathf.CeilToInt(tiempo);
         textoTimer.text = "Tiempo: " + segundos;
+    }
+
+    public void MostrarPantallaWin()
+    {
+        panelWin.SetActive(true);
+    }
+
+    public void MostrarPantallaGameOver()
+    {
+        panelGameOver.SetActive(true);
     }
 }
