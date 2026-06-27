@@ -3343,15 +3343,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME OVER\nPresiona R para reiniciar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8abce135e9b01a24daf9b4ae4787deff, type: 2}
+  m_sharedMaterial: {fileID: 4185557082946826635, guid: 8abce135e9b01a24daf9b4ae4787deff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3021346505
-  m_fontColor: {r: 0.78867924, g: 0.08779631, b: 0.08779631, a: 0.7058824}
+    rgba: 3023583478
+  m_fontColor: {r: 0.9647059, g: 0.21960786, b: 0.21960786, a: 0.7058824}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5915,8 +5915,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\xA1GANASTE!\\nPresiona R para reiniciar"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8abce135e9b01a24daf9b4ae4787deff, type: 2}
+  m_sharedMaterial: {fileID: 4185557082946826635, guid: 8abce135e9b01a24daf9b4ae4787deff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
